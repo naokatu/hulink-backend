@@ -23,6 +23,21 @@ build-no-cache:
 format:
 	$(COMMAND_PREFIX) yarn format
 
+.PHONY: migrate
+migrate:
+	$(COMMAND_PREFIX) yarn prisma migrate dev
+
+.PHONY: seed
+seed:
+	$(COMMAND_PREFIX) yarn db:seed-dev
+
+.PHONY: reset-database
+reset-database:
+	$(COMMAND_PREFIX) yarn prisma migrate reset --force &&
+
 docker-format: _docker-format
+docker-migrate: _docker-migrate
+docker-seed: _docker-seed
+docker-reset-database: _docker-reset-database
 _docker-%:
 	make $* COMMAND_PREFIX='docker compose exec app'
