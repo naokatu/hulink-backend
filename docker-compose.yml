@@ -24,7 +24,7 @@ services:
     ports:
       - '13000:3000'
     environment:
-      DATABASE_URL: 'postgresql://postgres:admin@postgres:5432/gatcher?schema=public'
+      DATABASE_URL: 'postgresql://postgres:admin@postgres:5432/hulink?schema=public'
       AUTH_ENABLED: false
       LOGGING_LEVEL: debug
       LOGGING_PRETTY_PRINTED: true
@@ -34,7 +34,7 @@ services:
     environment:
       POSTGRES_PASSWORD: 'admin'
       POSTGRES_USER: 'postgres'
-      POSTGRES_DB: 'gatcher'
+      POSTGRES_DB: 'hulink'
     ports:
       - '15432:5432'
     volumes:
