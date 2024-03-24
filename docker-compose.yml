@@ -1,0 +1,48 @@
+version: 'Compose-Spec'
+
+volumes:
+  postgres_data:
+    driver: 'local'
+  app_node_modules:
+    driver: 'local'
+
+services:
+  app:
+    profiles:
+      - full
+    depends_on:
+      postgres:
+        condition: service_healthy
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+      target: artifact
+    volumes:
+      - ./:/app
+      - app_node_modules:/app/node_modules
+    command: yarn run start:dev
+    ports:
+      - '13000:3000'
+    environment:
+      DATABASE_URL: 'postgresql://postgres:admin@postgres:5432/gatcher?schema=public'
+      AUTH_ENABLED: false
+      LOGGING_LEVEL: debug
+      LOGGING_PRETTY_PRINTED: true
+
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_PASSWORD: 'admin'
+      POSTGRES_USER: 'postgres'
+      POSTGRES_DB: 'gatcher'
+    ports:
+      - '15432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./docker/postgres/postgresql.conf:/etc/postgresql/postgresql.conf
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U $${POSTGRES_USER}']
+      interval: '5s'
+      timeout: '5s'
+      retries: 10
+      start_period: '10s'
