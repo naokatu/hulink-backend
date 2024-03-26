@@ -1,0 +1,456 @@
+openapi: 3.1.0
+x-stoplight:
+  id: 36gulnri1frdn
+info:
+  title: HuLink
+  version: '1.0'
+  summary: ''
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /user:
+    post:
+      summary: ユーザを作成する
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: 8t23ohd7r9up3
+                    required:
+                      - user
+                    properties:
+                      user:
+                        $ref: '#/components/schemas/User'
+                        x-stoplight:
+                          id: 35dccahft75ka
+                  errors:
+                    type: array
+                    x-stoplight:
+                      id: 479decjvoir7v
+                    items:
+                      $ref: '#/components/schemas/CreateUserError'
+                      x-stoplight:
+                        id: 8jm2mzwj6t7lj
+      operationId: post-user
+      x-stoplight:
+        id: q5aooqnj7izsb
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: Bearer xxx
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserInput'
+    get:
+      summary: ユーザを取得する
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: rw22ob9xpp5az
+                    required:
+                      - user
+                    properties:
+                      user:
+                        $ref: '#/components/schemas/User'
+                        x-stoplight:
+                          id: 7deta8jt92zae
+      operationId: get-user
+      x-stoplight:
+        id: cpzmxsdjczla1
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: Bearer xxx
+  /link-user:
+    get:
+      summary: リンクユーザを取得する
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    type: array
+                    x-stoplight:
+                      id: kto3f2q9p84e6
+                    items:
+                      $ref: '#/components/schemas/LinkUser'
+                      x-stoplight:
+                        id: jqwyg91on9g75
+      operationId: get-link-user
+      x-stoplight:
+        id: ndn6onezat9lh
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: Bearer xxx
+    post:
+      summary: リンクユーザを作成する
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: b9qar2lb6wzsr
+                    required:
+                      - linkUser
+                    properties:
+                      linkUser:
+                        $ref: '#/components/schemas/LinkUser'
+                        x-stoplight:
+                          id: 77r5y1y85lwes
+                  errors:
+                    x-stoplight:
+                      id: m142da7t1hkk7
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CreateLinkUserError'
+                      x-stoplight:
+                        id: kh13aw10xqcnc
+      operationId: post-link-user
+      x-stoplight:
+        id: 1s6mvs0tmhmyd
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: Bearer xxx
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  x-stoplight:
+                    id: 6py0nk5b3sv03
+                  properties:
+                    linkuser:
+                      $ref: '#/components/schemas/LinkUser'
+                      x-stoplight:
+                        id: 4xn3lzku0c1ff
+components:
+  schemas:
+    User:
+      title: User
+      type: object
+      examples:
+        - id: 142
+          firstName: Alice
+          lastName: Smith
+          email: alice.smith@gmail.com
+          dateOfBirth: '1997-10-31'
+          emailVerified: true
+          signUpDate: '2019-08-24'
+      x-stoplight:
+        id: vdchmwq3zuw6n
+      required:
+        - id
+        - name
+        - registrationDate
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the given user.
+          x-stoplight:
+            id: gnpapkewqff4w
+          format: uuid
+        name:
+          type: string
+          x-stoplight:
+            id: wx2gf86nogcmc
+        linkUser:
+          type: array
+          x-stoplight:
+            id: 7gpk2nno9vqc2
+          items:
+            $ref: '#/components/schemas/LinkUser'
+            x-stoplight:
+              id: sp5kui9avlqup
+        registrationDate:
+          type: string
+          description: Set to true if the user's email has been verified.
+          x-stoplight:
+            id: k5kuzr4cok6cq
+          format: date-time
+    LinkUser:
+      title: LinkUser
+      x-stoplight:
+        id: gpa2kjxeot3zk
+      type: object
+      required:
+        - id
+        - name
+        - encount
+      properties:
+        id:
+          type: string
+          x-stoplight:
+            id: u6mmytvb8wzsu
+          format: uuid
+        name:
+          type: string
+          x-stoplight:
+            id: pfeh7mrjaolpl
+        encount:
+          type: integer
+          x-stoplight:
+            id: ognuz2omvnu7h
+        label:
+          type: string
+          x-stoplight:
+            id: 9ifkxaojl4s7u
+    CreateUserInput:
+      title: CreateUserInput
+      x-stoplight:
+        id: rvu7i9um5f12b
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          x-stoplight:
+            id: 8x6i0myhyvi6v
+    CreateLinkUser:
+      title: CreateLinkUserInput
+      x-stoplight:
+        id: 5mbxl30yt8e7y
+      type: object
+      required:
+        - name
+        - encount
+      properties:
+        name:
+          type: string
+          x-stoplight:
+            id: 92giq04to0ylt
+        encount:
+          type: string
+          x-stoplight:
+            id: 4pbuxlua9pa9l
+        label:
+          type: string
+          x-stoplight:
+            id: 62ndky69gdaln
+    400ValidationError:
+      title: 400ValidationError
+      x-stoplight:
+        id: nao5l5trg7y9m
+      type: object
+      required:
+        - code
+        - errors
+      properties:
+        code:
+          type: string
+          x-stoplight:
+            id: q9j569adoao04
+        errors:
+          type: array
+          x-stoplight:
+            id: t5tk27y5fqvtg
+          items:
+            x-stoplight:
+              id: jpp7ryffoxepx
+            type: object
+            required:
+              - path
+              - message
+            properties:
+              path:
+                type: string
+                x-stoplight:
+                  id: 30onlqaucxiki
+              message:
+                type: string
+                x-stoplight:
+                  id: zafy5uaa312tk
+              errorCode:
+                type: string
+                x-stoplight:
+                  id: j51cdl4crd9o3
+    401Error:
+      title: 401Error
+      x-stoplight:
+        id: 4k2islxqzpzfs
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          x-stoplight:
+            id: tgz8offpmfp3x
+        message:
+          type: string
+          x-stoplight:
+            id: qc1hqouzghbpu
+    500Error:
+      title: 500Error
+      x-stoplight:
+        id: er8weti48jj9d
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          x-stoplight:
+            id: 4ex763apsjvkh
+        message:
+          type: string
+          x-stoplight:
+            id: 29awdta9zkpvk
+    503Error:
+      title: 503Error
+      x-stoplight:
+        id: qzbtaows5dh7f
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          x-stoplight:
+            id: birl9st37r03o
+        message:
+          type: string
+          x-stoplight:
+            id: kiea1ys22o7um
+    Pagenation:
+      title: Pagenation
+      x-stoplight:
+        id: nhg35vxy4uqn1
+      type: object
+      properties:
+        total:
+          type: integer
+          x-stoplight:
+            id: qrv1bzrw22dru
+    CreateUserError:
+      title: CreateUserError
+      x-stoplight:
+        id: o0slkz4qv8rzk
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          x-stoplight:
+            id: fiia6o0cmeplp
+        message:
+          type: string
+          x-stoplight:
+            id: 9xnpyosz59vht
+    CreateLinkUserError:
+      title: CreateLinkUserInputError
+      x-stoplight:
+        id: 28c1aud32yr7t
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          x-stoplight:
+            id: 5fzv633tq60rv
+        message:
+          type: string
+          x-stoplight:
+            id: iqt4z52aecdey
+  responses:
+    '400':
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/400ValidationError'
+    '401':
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/401Error'
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/500Error'
+    '503':
+      description: Service Unavailable
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/503Error'
+  parameters:
+    authorization:
+      name: authorization
+      in: header
+      required: false
+      schema:
+        type: string
+      description: Bearer xxx
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Pagenation limit
+    offset:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Pagenation offset
