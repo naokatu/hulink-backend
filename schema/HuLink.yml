@@ -48,7 +48,11 @@ paths:
                       user:
                         $ref: '#/components/schemas/User'
                   errors:
-                    $ref: '#/components/schemas/CreateUserError'
+                    x-stoplight:
+                      id: e13jhr3k9iz2j
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CreateUserError'
       deprecated: false
     get:
       summary: ユーザを取得する
@@ -74,9 +78,13 @@ paths:
                     type: object
                     x-stoplight:
                       id: rb521dch0iux4
+                    required:
+                      - user
                     properties:
                       user:
                         $ref: '#/components/schemas/User'
+                required:
+                  - data
             application/xml:
               schema:
                 type: object
@@ -157,8 +165,14 @@ paths:
                           id: d85ub4avwrqq7
                         items:
                           $ref: '#/components/schemas/LinkUser'
+                    required:
+                      - linkUsers
                   errors:
-                    $ref: '#/components/schemas/CreateLinkUserInputError'
+                    x-stoplight:
+                      id: nk03cm9grnxow
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CreateLinkUserError'
       deprecated: false
 components:
   schemas:
@@ -258,6 +272,9 @@ components:
                 type: string
                 x-stoplight:
                   id: u6n2diozc8rgh
+            required:
+              - path
+              - message
       required:
         - code
         - errors
@@ -321,8 +338,10 @@ components:
           type: string
       x-stoplight:
         id: f047kbzfvqn3a
-    CreateLinkUserInputError:
-      title: CreateLinkUserInputError
+    CreateLinkUserError:
+      title: CreateLinkUserError
+      x-stoplight:
+        id: 937df2fe2c992
       required:
         - code
         - message
@@ -332,8 +351,6 @@ components:
           type: string
         message:
           type: string
-      x-stoplight:
-        id: mpjfmpvpwmz88
   responses:
     '400':
       description: Unauthorized
