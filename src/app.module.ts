@@ -27,7 +27,7 @@ export class AppModule implements NestModule {
       .apply(
         LoggingMiddleware,
         ...OpenApiValidator.middleware({
-          apiSpec: join(__dirname, 'schema/hulink.yml'),
+          apiSpec: join(__dirname, 'schema/HuLink.yml'),
           ajvFormats: {
             mode: 'full',
           },
