@@ -1,0 +1,45 @@
+name: 'Checks'
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Start docker container
+        run: COMPOSE_PROFILES=full docker compose up -d
+      - name: Run migration
+        run: docker compose exec app yarn prisma migrate reset --force
+      - name: Run lint
+        run: docker compose exec app yarn lint
+
+  unit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Start docker container
+        run: COMPOSE_PROFILES=test docker compose up -d
+      - name: Run migration
+        run: docker compose exec test yarn prisma migrate reset --force
+      - name: Run unit test
+        run: docker compose exec test yarn test
+
+  e2e-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Start docker container
+        run: COMPOSE_PROFILES=test docker compose up -d
+      - name: Run migration
+        run: docker compose exec test yarn prisma migrate reset --force
+      - name: Run unit test
+        run: docker compose exec test yarn test:e2e
