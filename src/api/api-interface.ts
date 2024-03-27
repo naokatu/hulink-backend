@@ -11,17 +11,11 @@
 
 /** User */
 export interface User {
-  /**
-   * Unique identifier for the given user.
-   * @format uuid
-   */
+  /** @format uuid */
   id: string
   name: string
   linkUser?: LinkUser[]
-  /**
-   * Set to true if the user's email has been verified.
-   * @format date-time
-   */
+  /** @format date-time */
   registrationDate: string
 }
 
@@ -30,6 +24,7 @@ export interface LinkUser {
   /** @format uuid */
   id: string
   name: string
+  /** @format int32 */
   encount: number
   label?: string
   sex?: string
@@ -41,7 +36,7 @@ export interface CreateUserInput {
 }
 
 /** CreateLinkUserInput */
-export interface CreateLinkUser {
+export interface CreateLinkUserInput {
   name: string
   encount: string
   label?: string
@@ -54,7 +49,7 @@ export interface Type400ValidationError {
   errors: {
     path: string
     message: string
-    errorCode?: string
+    errorcode?: string
   }[]
 }
 
@@ -87,7 +82,7 @@ export interface CreateUserError {
   message: string
 }
 
-/** CreateLinkUserInputError */
+/** CreateLinkUserError */
 export interface CreateLinkUserError {
   code: string
   message: string
@@ -141,7 +136,7 @@ export namespace LinkUser {
   /**
    * No description
    * @name GetLinkUser
-   * @summary リンクユーザを取得する
+   * @summary リンクユーザを一覧取得する
    * @request GET:/link-user
    */
   export namespace GetLinkUser {
@@ -167,18 +162,14 @@ export namespace LinkUser {
   export namespace PostLinkUser {
     export type RequestParams = {}
     export type RequestQuery = {}
-    export type RequestBody = {
-      data?: {
-        linkuser?: LinkUser
-      }
-    }
+    export type RequestBody = CreateLinkUserInput
     export type RequestHeaders = {
       /** Bearer xxx */
       authorization?: string
     }
     export type ResponseBody = {
       data?: {
-        linkUser: LinkUser
+        linkUsers: LinkUser[]
       }
       errors?: CreateLinkUserError[]
     }
