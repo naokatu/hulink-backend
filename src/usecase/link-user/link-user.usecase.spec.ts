@@ -15,7 +15,9 @@ describe('LinkUserUsecase', () => {
 
   beforeEach(() => {
     prisma = jest.createMockFromModule('../../prisma.service')
-    repository = jest.createMockFromModule('../../repository/link-user/link-user.repository')
+    repository = jest.createMockFromModule(
+      '../../repository/link-user/link-user.repository',
+    )
     usecase = new LinkUserUsecase(repository, prisma)
     jest.clearAllMocks()
     resetAllWhenMocks()
@@ -39,7 +41,9 @@ describe('LinkUserUsecase', () => {
 
       // mock
       const transactionPrisma = {} as db.Prisma.TransactionClient
-      prisma.$transaction = jest.fn().mockImplementation((cb) => cb(transactionPrisma))
+      prisma.$transaction = jest
+        .fn()
+        .mockImplementation((cb) => cb(transactionPrisma))
 
       repository.getLinkUsers = jest.fn()
       when(repository.getLinkUsers)

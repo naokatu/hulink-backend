@@ -2,7 +2,12 @@ import { HttpStatus, INestApplication } from '@nestjs/common'
 import { PrismaClient } from '@prisma/client'
 import * as request from 'supertest'
 
-import { createLinkUser, userEmmaId, userLilyId, userSamId } from '../src/database/seeders/test/link-user'
+import {
+  createLinkUser,
+  userEmmaId,
+  userLilyId,
+  userSamId,
+} from '../src/database/seeders/test/link-user'
 import { createTestingApplication } from './test-application'
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment

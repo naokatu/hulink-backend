@@ -13,7 +13,6 @@ export class LinkUserUsecase {
 
   async getLinkUsers(): Promise<usecase.GetLinkUsersOutput> {
     return this.prisma.$transaction(async (tx) => {
-
       const linkUsers = await this.linkUserRepository.getLinkUsers(tx)
 
       return {
