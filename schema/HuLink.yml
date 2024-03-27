@@ -1,12 +1,12 @@
 openapi: 3.1.0
 x-stoplight:
-  id: 36gulnri1frdn
+  id: v8wknidsux3li
 info:
   title: HuLink
   version: '1.0'
   summary: ''
 servers:
-  - url: 'http://localhost:3000'
+  - url: 'http://localhost:3000/v1'
 paths:
   /user:
     post:
@@ -185,7 +185,7 @@ components:
           emailVerified: true
           signUpDate: '2019-08-24'
       x-stoplight:
-        id: vdchmwq3zuw6n
+        id: 2wbxonqzkl0aw
       required:
         - id
         - name
@@ -218,12 +218,8 @@ components:
     LinkUser:
       title: LinkUser
       x-stoplight:
-        id: gpa2kjxeot3zk
+        id: 07rr1sjuc3fge
       type: object
-      required:
-        - id
-        - name
-        - encount
       properties:
         id:
           type: string
@@ -242,10 +238,18 @@ components:
           type: string
           x-stoplight:
             id: 9ifkxaojl4s7u
+        sex:
+          type: string
+          x-stoplight:
+            id: liacrt6z8ojti
+      required:
+        - id
+        - name
+        - encount
     CreateUserInput:
       title: CreateUserInput
       x-stoplight:
-        id: rvu7i9um5f12b
+        id: oaqn3cpt4ke0r
       type: object
       required:
         - name
@@ -257,11 +261,8 @@ components:
     CreateLinkUser:
       title: CreateLinkUserInput
       x-stoplight:
-        id: 5mbxl30yt8e7y
+        id: k7ps9ck22d7mo
       type: object
-      required:
-        - name
-        - encount
       properties:
         name:
           type: string
@@ -275,10 +276,17 @@ components:
           type: string
           x-stoplight:
             id: 62ndky69gdaln
+        sex:
+          type: string
+          x-stoplight:
+            id: pv0nobv4c9jyv
+      required:
+        - name
+        - encount
     400ValidationError:
       title: 400ValidationError
       x-stoplight:
-        id: nao5l5trg7y9m
+        id: 608jf0e3trv5m
       type: object
       required:
         - code
@@ -315,7 +323,7 @@ components:
     401Error:
       title: 401Error
       x-stoplight:
-        id: 4k2islxqzpzfs
+        id: 9vce616c1zr86
       type: object
       required:
         - code
@@ -332,7 +340,7 @@ components:
     500Error:
       title: 500Error
       x-stoplight:
-        id: er8weti48jj9d
+        id: y28k7ly4itpo5
       type: object
       required:
         - code
@@ -349,7 +357,7 @@ components:
     503Error:
       title: 503Error
       x-stoplight:
-        id: qzbtaows5dh7f
+        id: jdtjjlfdy8tz6
       type: object
       required:
         - code
@@ -366,7 +374,7 @@ components:
     Pagenation:
       title: Pagenation
       x-stoplight:
-        id: nhg35vxy4uqn1
+        id: rj2mr56t88tsk
       type: object
       properties:
         total:
@@ -376,7 +384,7 @@ components:
     CreateUserError:
       title: CreateUserError
       x-stoplight:
-        id: o0slkz4qv8rzk
+        id: yl8jnbdw1z0fr
       type: object
       required:
         - code
@@ -393,7 +401,7 @@ components:
     CreateLinkUserError:
       title: CreateLinkUserInputError
       x-stoplight:
-        id: 28c1aud32yr7t
+        id: ufhla9y73ldc2
       type: object
       required:
         - code
