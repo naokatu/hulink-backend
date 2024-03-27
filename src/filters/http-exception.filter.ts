@@ -2,9 +2,9 @@ import {
   ArgumentsHost,
   Catch,
   ExceptionFilter,
-  HttpStatus, Logger,
+  HttpStatus,
 } from '@nestjs/common'
-import { Response } from 'express'
+import { Request, Response } from 'express'
 import { error as validatorErrors } from 'express-openapi-validator'
 
 import { InternalErrorResponseErrorCodes } from '../errors/error-codes'
@@ -29,12 +29,11 @@ interface ValidationError {
 export class HttpExceptionFilter implements ExceptionFilter {
   catch(error: Error, host: ArgumentsHost) {
     const ctx = host.switchToHttp()
+    const request = ctx.getRequest<Request>()
     const response = ctx.getResponse<Response>()
 
-    const logger = new Logger(HttpExceptionFilter.name)
-
     if (error.stack != null) {
-      logger.error(error.stack)
+      request.logger.trace = error.stack
     }
 
     if (error instanceof ApplicationException) {
