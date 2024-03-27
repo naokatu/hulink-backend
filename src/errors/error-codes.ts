@@ -1,4 +1,3 @@
-
 // 400
 export type BadRequestResponseErrorCodes = 'OPENAPI_VALIDATION_ERROR'
 
