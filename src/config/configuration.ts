@@ -25,17 +25,6 @@ function parseBoolean(value: string): boolean {
   throw new Error(`environment variable is not boolean: ${value}`)
 }
 
-// 文字列を number に変換する
-function parseNumber(value: string): number {
-  const parsed = Number(value)
-
-  if (isNaN(parsed)) {
-    throw new Error(`environment variable is not number: ${value}`)
-  }
-
-  return parsed
-}
-
 export type Config = {
   APP_ENV: string
   LOG_PRETTY_PRINT: boolean
