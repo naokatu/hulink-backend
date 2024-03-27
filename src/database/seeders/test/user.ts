@@ -1,9 +1,9 @@
 import { PrismaClient } from '@prisma/client'
 import * as db from '@prisma/client'
 
-export const userJohnId = 'e4e5df5f-03ec-830e-4f14-ae5c82b6aa79'
-export const userMikeId = 'AA2D6AC8-3CC6-48CB-B559-038A86C97F94'
-export const userEmilyId = '0193C28F-A9E2-4991-9B12-18BE6BF220EA'
+export const userJohnId = 'e6e9bfb8-eedb-91a1-265c-46217b54fd5a'
+export const userMikeId = '598915c4-c4fb-2a17-fc10-01cc4830d6f5'
+export const userEmilyId = '124a57ed-4b15-d61b-ebcc-4067ac83191a'
 
 export async function createUser(prisma: PrismaClient) {
   const createManyInput: db.Prisma.UserCreateManyInput[] = [

@@ -3,8 +3,7 @@ import { ConfigModule } from '@nestjs/config'
 import * as OpenApiValidator from 'express-openapi-validator'
 import { join } from 'path'
 
-import { AppController } from './app.controller'
-import { AppService } from './app.service'
+import { LinkUserModule } from './api/link-user/link-user.module'
 import configuration from './config/configuration'
 import { LoggingModule } from './logging/logging.module'
 import { LoggingService } from './logging/logging.service'
@@ -18,9 +17,9 @@ import { LoggingMiddleware } from './middleware/logging.middleware'
       ignoreEnvFile: true,
     }),
     LoggingModule,
+    LinkUserModule,
   ],
-  controllers: [AppController],
-  providers: [AppService, LoggingService],
+  providers: [LoggingService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
@@ -28,8 +27,10 @@ export class AppModule implements NestModule {
       .apply(
         LoggingMiddleware,
         ...OpenApiValidator.middleware({
-          apiSpec: join(__dirname, 'schema/hulink.yml'),
-          validateFormats: 'full',
+          apiSpec: join(__dirname, 'schema/HuLink.yml'),
+          ajvFormats: {
+            mode: 'full',
+          },
         }),
       )
       .forRoutes('*')

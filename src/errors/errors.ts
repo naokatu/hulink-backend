@@ -9,7 +9,7 @@ import {
 
 export type ErrorObject<
   T extends
-      | UnauthorizedResponseErrorCodes
+    | UnauthorizedResponseErrorCodes
     | ServiceUnavailableResponseErrorCodes
     | InternalErrorResponseErrorCodes
     | BadRequestResponseErrorCodes,
@@ -20,7 +20,7 @@ export type ErrorObject<
 
 export class ApplicationException<
   T extends
-      | UnauthorizedResponseErrorCodes
+    | UnauthorizedResponseErrorCodes
     | ServiceUnavailableResponseErrorCodes
     | BadRequestResponseErrorCodes,
 > extends HttpException {
