@@ -29,7 +29,7 @@ export type Config = {
   APP_ENV: string
   LOG_PRETTY_PRINT: boolean
   LOG_LEVEL: string
-  DO_AUTHENTICATION: boolean
+  AUTH_ENABLED: boolean
 }
 
 export default (): Config => {
@@ -37,6 +37,6 @@ export default (): Config => {
     APP_ENV: getEnv('APP_ENV'),
     LOG_PRETTY_PRINT: parseBoolean(getEnv('LOG_PRETTY_PRINT')),
     LOG_LEVEL: getEnv('LOG_LEVEL'),
-    DO_AUTHENTICATION: parseBoolean(getEnv('DO_AUTHENTICATION')),
+    AUTH_ENABLED: parseBoolean(getEnv('AUTH_ENABLED')),
   }
 }
