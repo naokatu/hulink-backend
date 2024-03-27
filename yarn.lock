@@ -860,6 +860,20 @@
   resolved "https://registry.yarnpkg.com/@prisma/engines/-/engines-5.1.1.tgz#9c26d209f93a563e048eab63b1976f222f1707d0"
   integrity sha512-NV/4nVNWFZSJCCIA3HIFJbbDKO/NARc9ej0tX5S9k2EVbkrFJC4Xt9b0u4rNZWL4V+F5LAjvta8vzEUw0rw+HA==
 
+"@quramy/jest-prisma-core@^1.0.0":
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/@quramy/jest-prisma-core/-/jest-prisma-core-1.8.0.tgz#0e6086ac9500710b566b265de408752c38b40592"
+  integrity sha512-LP096CU6ffHSdoSuBEK2OVwyVKPCUk/PKPkIYhAQuU1yER3EKgSEPkH59MaRGQvJjZnupmIYaC9x5gISUEGe7w==
+  dependencies:
+    chalk "^4.0.0"
+
+"@quramy/jest-prisma-node@1.5":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@quramy/jest-prisma-node/-/jest-prisma-node-1.5.0.tgz#a001c2cce380937d3a2297ad08360f944194ce9d"
+  integrity sha512-dxlUF64WgBGWI1+qvGKXi5JW4gmr5lQyYvfVlyEp3Cpv8g8I3nIKJc8cgCBjSsTWm4jqZRIans2lLfmHuhkBlA==
+  dependencies:
+    "@quramy/jest-prisma-core" "^1.0.0"
+
 "@sinclair/typebox@^0.27.8":
   version "0.27.8"
   resolved "https://registry.yarnpkg.com/@sinclair/typebox/-/typebox-0.27.8.tgz#6667fac16c436b5434a387a34dedb013198f6e6e"
