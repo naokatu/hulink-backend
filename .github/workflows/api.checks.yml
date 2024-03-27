@@ -8,7 +8,7 @@ on:
       - reopened
 
 jobs:
-  lint:
+  format-and-lint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -17,6 +17,8 @@ jobs:
         run: COMPOSE_PROFILES=full docker compose up -d
       - name: Run migration
         run: docker compose exec app yarn prisma migrate reset --force
+      - name: Run format check
+        run: docker compose exec app yarn format:check
       - name: Run lint
         run: docker compose exec app yarn lint
 
@@ -41,5 +43,5 @@ jobs:
         run: COMPOSE_PROFILES=test docker compose up -d
       - name: Run migration
         run: docker compose exec test yarn prisma migrate reset --force
-      - name: Run unit test
+      - name: Run e2e test
         run: docker compose exec test yarn test:e2e
