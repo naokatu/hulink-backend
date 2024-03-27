@@ -33,7 +33,7 @@ seed:
 
 .PHONY: reset-database
 reset-database:
-	$(COMMAND_PREFIX) yarn prisma migrate reset --force && $(COMMAND_PREFIX) yarn db:seed-dev
+	$(COMMAND_PREFIX) yarn prisma migrate reset --force
 
 .PHONT: generate-openapi-interface
 generate-openapi-interface:
