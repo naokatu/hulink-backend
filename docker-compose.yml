@@ -6,40 +6,53 @@ volumes:
   app_node_modules:
     driver: 'local'
 
+x-app-base: &app-base
+  depends_on:
+    postgres:
+      condition: service_healthy
+  build:
+    context: ./
+    dockerfile: ./Dockerfile
+    target: artifact
+  volumes:
+    - ./:/app
+    - app_node_modules:/app/node_modules
+  command: yarn run start:dev
+
 services:
   app:
+    <<: *app-base
     profiles:
       - full
-    depends_on:
-      postgres:
-        condition: service_healthy
-    build:
-      context: ./
-      dockerfile: ./Dockerfile
-      target: artifact
-    volumes:
-      - ./:/app
-      - app_node_modules:/app/node_modules
-    command: yarn run start:dev
     ports:
       - '13000:3000'
     environment:
-      DATABASE_URL: 'postgresql://postgres:admin@postgres:5432/hulink?schema=public'
+      DATABASE_URL: 'postgresql://postgres:admin@postgres:5432/hulink-app?schema=public'
       AUTH_ENABLED: false
-      LOGGING_LEVEL: debug
-      LOGGING_PRETTY_PRINTED: true
+      LOG_LEVEL: debug
+      LOG_PRETTY_PRINT: true
+
+  test:
+    <<: *app-base
+    profiles:
+      - test
+    environment:
+      DATABASE_URL: 'postgresql://postgres:admin@postgres:5432/hulink-test?schema=public'
+      AUTH_ENABLED: false
+      LOG_LEVEL: debug
+      LOG_PRETTY_PRINT: false
 
   postgres:
     image: postgres:15-alpine
     environment:
       POSTGRES_PASSWORD: 'admin'
       POSTGRES_USER: 'postgres'
-      POSTGRES_DB: 'hulink'
+      POSTGRES_MULTIPLE_DATABASES: '"hulink-app","hulink-test"'
     ports:
       - '15432:5432'
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./docker/postgres/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./docker/postgres/create-multiple-postgresql-databases.sh:/docker-entrypoint-initdb.d/create-multiple-postgresql-databases.sh
     healthcheck:
       test: ['CMD-SHELL', 'pg_isready -U $${POSTGRES_USER}']
       interval: '5s'
