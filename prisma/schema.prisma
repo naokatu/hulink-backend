@@ -11,18 +11,18 @@ datasource db {
 }
 
 model User {
-  id String @id @db.Uuid
-  name String
+  id        String   @id @db.Uuid
+  name      String
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
 }
 
 model LinkUser {
-  id String @id @db.Uuid
-  name String
-  encount Int
-  label String
-  sex String
+  id        String   @id @db.Uuid
+  name      String
+  encount   Int
+  label     String
+  sex       String
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
 }

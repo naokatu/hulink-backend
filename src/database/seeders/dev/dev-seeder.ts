@@ -6,8 +6,8 @@ import { createUser } from './user'
 const prisma = new PrismaClient()
 
 async function execute() {
-  await createUser()
-  await createLinkUser()
+  await createUser(prisma)
+  await createLinkUser(prisma)
 }
 
 execute()
