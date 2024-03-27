@@ -153,7 +153,9 @@ export namespace LinkUser {
       authorization?: string
     }
     export type ResponseBody = {
-      data: LinkUser[]
+      data: {
+        linkUsers: LinkUser[]
+      }
     }
   }
   /**

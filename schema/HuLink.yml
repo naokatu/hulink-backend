@@ -97,17 +97,24 @@ paths:
             application/json:
               schema:
                 type: object
-                required:
-                  - data
                 properties:
                   data:
-                    type: array
+                    type: object
                     x-stoplight:
                       id: kto3f2q9p84e6
-                    items:
-                      $ref: '#/components/schemas/LinkUser'
-                      x-stoplight:
-                        id: jqwyg91on9g75
+                    required:
+                      - linkUsers
+                    properties:
+                      linkUsers:
+                        x-stoplight:
+                          id: jqwyg91on9g75
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/LinkUser'
+                          x-stoplight:
+                            id: uky1jli253dos
+                required:
+                  - data
       operationId: get-link-user
       x-stoplight:
         id: ndn6onezat9lh
