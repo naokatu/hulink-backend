@@ -9,8 +9,7 @@ export class LinkUserUsecase {
   constructor(
     private linkUserRepository: LinkUserRepository,
     private prisma: PrismaService,
-  ) {
-  }
+  ) {}
 
   async getLinkUsers(): Promise<usecase.GetLinkUsersOutput> {
     return this.prisma.$transaction(async (tx) => {
