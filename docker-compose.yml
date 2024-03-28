@@ -45,7 +45,7 @@ services:
       LOG_PRETTY_PRINT: false
 
   postgres:
-    image: postgres:14.5-alpine
+    image: postgres:15-alpine
     environment:
       POSTGRES_PASSWORD: 'admin'
       POSTGRES_USER: 'postgres'
