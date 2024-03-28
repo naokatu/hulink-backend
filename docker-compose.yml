@@ -38,7 +38,7 @@ services:
     profiles:
       - test
     environment:
-      APP_ENV: local
+      APP_ENV: test
       DATABASE_URL: 'postgresql://postgres:admin@postgres:5432/hulink-test?schema=public'
       AUTH_ENABLED: false
       LOG_LEVEL: debug
