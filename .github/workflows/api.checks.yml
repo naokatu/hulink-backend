@@ -14,7 +14,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Start docker container
-        run: COMPOSE_PROFILES=full docker compose up -d
+        run: |
+          COMPOSE_PROFILES=full docker compose up -d
+          docker-compose logs
       - name: Run migration
         run: docker compose exec app yarn prisma migrate reset --force
       - name: Run format check
