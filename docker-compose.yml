@@ -27,6 +27,7 @@ services:
     ports:
       - '13000:3000'
     environment:
+      APP_ENV: local
       DATABASE_URL: 'postgresql://postgres:admin@postgres:5432/hulink-app?schema=public'
       AUTH_ENABLED: false
       LOG_LEVEL: debug
@@ -37,6 +38,7 @@ services:
     profiles:
       - test
     environment:
+      APP_ENV: test
       DATABASE_URL: 'postgresql://postgres:admin@postgres:5432/hulink-test?schema=public'
       AUTH_ENABLED: false
       LOG_LEVEL: debug
@@ -53,6 +55,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./docker/postgres/create-multiple-postgresql-databases.sh:/docker-entrypoint-initdb.d/create-multiple-postgresql-databases.sh
+      - ./docker/postgres/postgresql.conf:/etc/postgresql/postgresql.conf
     healthcheck:
       test: ['CMD-SHELL', 'pg_isready -U $${POSTGRES_USER}']
       interval: '5s'
