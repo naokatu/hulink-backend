@@ -32,6 +32,7 @@ services:
       AUTH_ENABLED: false
       LOG_LEVEL: debug
       LOG_PRETTY_PRINT: true
+      GOOGLE_APPLICATION_CREDENTIALS: '/app/service-account.json'
 
   test:
     <<: *app-base
@@ -43,6 +44,7 @@ services:
       AUTH_ENABLED: false
       LOG_LEVEL: debug
       LOG_PRETTY_PRINT: false
+      GOOGLE_APPLICATION_CREDENTIALS: '/app/service-account.json'
 
   postgres:
     image: postgres:15-alpine
