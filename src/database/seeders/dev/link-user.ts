@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import * as db from '@prisma/client'
+
 import { userJohnId, userMikeId } from '../test/user'
 
 export const userEmmaId = 'e4e5df5f-03ec-830e-4f14-ae5c82b6aa79'
@@ -15,7 +16,7 @@ export async function createLinkUser(prisma: PrismaClient) {
       label: 'family',
       sex: 'female',
       createdUserId: userJohnId,
-      updatedUserId: userJohnId
+      updatedUserId: userJohnId,
     },
     {
       id: userLilyId,
@@ -24,7 +25,7 @@ export async function createLinkUser(prisma: PrismaClient) {
       label: 'family',
       sex: 'female',
       createdUserId: userJohnId,
-      updatedUserId: userJohnId
+      updatedUserId: userJohnId,
     },
     {
       id: userSamId,
@@ -33,7 +34,7 @@ export async function createLinkUser(prisma: PrismaClient) {
       label: 'friend',
       sex: 'male',
       createdUserId: userMikeId,
-      updatedUserId: userMikeId
+      updatedUserId: userMikeId,
     },
   ]
   await prisma.linkUser.createMany({

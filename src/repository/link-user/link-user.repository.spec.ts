@@ -12,8 +12,8 @@ import { LinkUserRepository } from './link-user.repository'
 describe('linkUserRepository', () => {
   let repository: LinkUserRepository
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const prisma: PrismaClient = jestPrisma.client
 
   beforeEach(() => {
@@ -30,7 +30,7 @@ describe('linkUserRepository', () => {
           label: 'family',
           sex: 'female',
           createdUserId: userJohnId,
-          updatedUserId: userJohnId
+          updatedUserId: userJohnId,
         },
         {
           id: userLilyId,
@@ -39,7 +39,7 @@ describe('linkUserRepository', () => {
           label: 'family',
           sex: 'female',
           createdUserId: userJohnId,
-          updatedUserId: userJohnId
+          updatedUserId: userJohnId,
         },
         {
           id: userSamId,
@@ -48,7 +48,7 @@ describe('linkUserRepository', () => {
           label: 'friend',
           sex: 'male',
           createdUserId: userMikeId,
-          updatedUserId: userMikeId
+          updatedUserId: userMikeId,
         },
       ]
 
@@ -62,5 +62,4 @@ describe('linkUserRepository', () => {
       expect(result).toMatchObject(expected)
     })
   })
-
 })

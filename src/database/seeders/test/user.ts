@@ -29,7 +29,7 @@ export async function createUser(prisma: PrismaClient) {
       firebaseUid: 'firebaseUid_emily',
       email: 'emily@example.com',
       createdUserId: userEmilyId,
-      updatedUserId: userEmilyId
+      updatedUserId: userEmilyId,
     },
   ]
   await prisma.user.createMany({

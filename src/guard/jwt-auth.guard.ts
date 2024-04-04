@@ -23,13 +23,15 @@ export class JwtAuthGuard implements CanActivate {
 
       return true
     } else {
-
       const authHeader = request.headers['authorization']
       const [type, jwt] = authHeader.split(' ')
 
       // authorization ヘッダーの中身が "Bearer JWT" の形式であるか確認
       if (type !== 'Bearer') {
-        throw new UnauthorizedException('INVALID_AUTH_TOKEN', 'bearer not found')
+        throw new UnauthorizedException(
+          'INVALID_AUTH_TOKEN',
+          'bearer not found',
+        )
       }
 
       // JWT を Decode して request に格納する

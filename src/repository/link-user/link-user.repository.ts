@@ -21,7 +21,7 @@ export class LinkUserRepository {
         label: linkUser.label,
         sex: linkUser.sex,
         createdUserId: linkUser.createdUserId,
-        updatedUserId: linkUser.updatedUserId
+        updatedUserId: linkUser.updatedUserId,
       }
     })
   }

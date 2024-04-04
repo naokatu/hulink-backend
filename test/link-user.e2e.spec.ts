@@ -8,7 +8,11 @@ import {
   userLilyId,
   userSamId,
 } from '../src/database/seeders/test/link-user'
-import { createUser , userJohnId, userMikeId } from '../src/database/seeders/test/user'
+import {
+  createUser,
+  userJohnId,
+  userMikeId,
+} from '../src/database/seeders/test/user'
 import { createTestingApplication } from './test-application'
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -35,7 +39,7 @@ describe('GET /v1/link-user', () => {
             label: 'family',
             sex: 'female',
             createdUserId: userJohnId,
-            updatedUserId: userJohnId
+            updatedUserId: userJohnId,
           },
           {
             id: userLilyId,
@@ -44,7 +48,7 @@ describe('GET /v1/link-user', () => {
             label: 'family',
             sex: 'female',
             createdUserId: userJohnId,
-            updatedUserId: userJohnId
+            updatedUserId: userJohnId,
           },
           {
             id: userSamId,
@@ -53,7 +57,7 @@ describe('GET /v1/link-user', () => {
             label: 'friend',
             sex: 'male',
             createdUserId: userMikeId,
-            updatedUserId: userMikeId
+            updatedUserId: userMikeId,
           },
         ],
       },

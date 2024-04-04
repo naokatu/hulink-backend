@@ -16,7 +16,7 @@ export async function createLinkUser(prisma: PrismaClient) {
       label: 'family',
       sex: 'female',
       createdUserId: userJohnId,
-      updatedUserId: userJohnId
+      updatedUserId: userJohnId,
     },
     {
       id: userLilyId,
@@ -25,7 +25,7 @@ export async function createLinkUser(prisma: PrismaClient) {
       label: 'family',
       sex: 'female',
       createdUserId: userJohnId,
-      updatedUserId: userJohnId
+      updatedUserId: userJohnId,
     },
     {
       id: userSamId,
@@ -34,7 +34,7 @@ export async function createLinkUser(prisma: PrismaClient) {
       label: 'friend',
       sex: 'male',
       createdUserId: userMikeId,
-      updatedUserId: userMikeId
+      updatedUserId: userMikeId,
     },
   ]
   await prisma.linkUser.createMany({

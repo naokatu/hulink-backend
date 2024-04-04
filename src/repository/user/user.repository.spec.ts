@@ -1,17 +1,14 @@
 import { PrismaClient } from '@prisma/client'
 
-import {
-  createUser,
-  userJohnId,
-} from '../../database/seeders/test/user'
+import { createUser, userJohnId } from '../../database/seeders/test/user'
 import { User } from '../../model/user'
 import { UserRepository } from './user.repository'
 
 describe('userRepository', () => {
   let repository: UserRepository
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const prisma: PrismaClient = jestPrisma.client
 
   beforeEach(() => {
@@ -40,5 +37,4 @@ describe('userRepository', () => {
       expect(result).toMatchObject(expected)
     })
   })
-
 })
