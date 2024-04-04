@@ -8,6 +8,7 @@ import {
   userLilyId,
   userSamId,
 } from '../src/database/seeders/test/link-user'
+import { createUser , userJohnId, userMikeId } from '../src/database/seeders/test/user'
 import { createTestingApplication } from './test-application'
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -19,6 +20,7 @@ let app: INestApplication
 beforeEach(async () => {
   app = await createTestingApplication()
   await app.init()
+  await createUser(prisma)
 })
 
 describe('GET /v1/link-user', () => {
@@ -32,6 +34,8 @@ describe('GET /v1/link-user', () => {
             encount: 10,
             label: 'family',
             sex: 'female',
+            createdUserId: userJohnId,
+            updatedUserId: userJohnId
           },
           {
             id: userLilyId,
@@ -39,6 +43,8 @@ describe('GET /v1/link-user', () => {
             encount: 10,
             label: 'family',
             sex: 'female',
+            createdUserId: userJohnId,
+            updatedUserId: userJohnId
           },
           {
             id: userSamId,
@@ -46,6 +52,8 @@ describe('GET /v1/link-user', () => {
             encount: 1,
             label: 'friend',
             sex: 'male',
+            createdUserId: userMikeId,
+            updatedUserId: userMikeId
           },
         ],
       },
