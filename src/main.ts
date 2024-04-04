@@ -1,5 +1,6 @@
 import { VersioningType } from '@nestjs/common'
 import { NestFactory } from '@nestjs/core'
+import admin from 'firebase-admin'
 
 import { AppModule } from './app.module'
 import { HttpExceptionFilter } from './filters/http-exception.filter'
@@ -11,6 +12,9 @@ async function bootstrap() {
     defaultVersion: '1',
   })
   app.useGlobalFilters(new HttpExceptionFilter())
+  admin.initializeApp({
+    credential: admin.credential.applicationDefault(),
+  })
   await app.listen(3000)
 }
 bootstrap()

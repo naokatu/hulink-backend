@@ -20,6 +20,8 @@ export class LinkUserRepository {
         encount: linkUser.encount,
         label: linkUser.label,
         sex: linkUser.sex,
+        createdUserId: linkUser.createdUserId,
+        updatedUserId: linkUser.updatedUserId,
       }
     })
   }
