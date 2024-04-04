@@ -12,7 +12,12 @@ datasource db {
 
 model User {
   id        String   @id @db.Uuid
+  firebaseUid String @unique
+  email String @unique
   name      String
+
+  createdUserId String @db.Uuid
+  updatedUserId String @db.Uuid
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
 }
@@ -23,6 +28,9 @@ model LinkUser {
   encount   Int
   label     String
   sex       String
+
+  createdUserId String @db.Uuid
+  updatedUserId String @db.Uuid
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
 }
