@@ -6,51 +6,61 @@ import {
   userLilyId,
   userSamId,
 } from '../../database/seeders/test/link-user'
+import { userJohnId, userMikeId } from '../../database/seeders/test/user'
 import { LinkUserRepository } from './link-user.repository'
 
-let repository: LinkUserRepository
+describe('linkUserRepository', () => {
+  let repository: LinkUserRepository
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-const prisma: PrismaClient = jestPrisma.client
+  const prisma: PrismaClient = jestPrisma.client
 
-beforeEach(() => {
-  repository = new LinkUserRepository()
-})
-
-describe('LinkUserRepository', () => {
-  it('正常系: getLinkUsers', async () => {
-    const expected = [
-      {
-        id: userEmmaId,
-        name: 'Emma',
-        encount: 10,
-        label: 'family',
-        sex: 'female',
-      },
-      {
-        id: userLilyId,
-        name: 'Lily',
-        encount: 10,
-        label: 'family',
-        sex: 'female',
-      },
-      {
-        id: userSamId,
-        name: 'Sam',
-        encount: 1,
-        label: 'friend',
-        sex: 'male',
-      },
-    ]
-
-    // seed data
-    await createLinkUser(prisma)
-
-    // execute
-    const result = await repository.getLinkUsers(prisma)
-
-    // assert
-    expect(result).toMatchObject(expected)
+  beforeEach(() => {
+    repository = new LinkUserRepository()
   })
+
+  describe('getLinkUsers', () => {
+    it('正常系: getLinkUsers', async () => {
+      const expected = [
+        {
+          id: userEmmaId,
+          name: 'Emma',
+          encount: 10,
+          label: 'family',
+          sex: 'female',
+          createdUserId: userJohnId,
+          updatedUserId: userJohnId
+        },
+        {
+          id: userLilyId,
+          name: 'Lily',
+          encount: 10,
+          label: 'family',
+          sex: 'female',
+          createdUserId: userJohnId,
+          updatedUserId: userJohnId
+        },
+        {
+          id: userSamId,
+          name: 'Sam',
+          encount: 1,
+          label: 'friend',
+          sex: 'male',
+          createdUserId: userMikeId,
+          updatedUserId: userMikeId
+        },
+      ]
+
+      // seed data
+      await createLinkUser(prisma)
+
+      // execute
+      const result = await repository.getLinkUsers(prisma)
+
+      // assert
+      expect(result).toMatchObject(expected)
+    })
+  })
+
 })
