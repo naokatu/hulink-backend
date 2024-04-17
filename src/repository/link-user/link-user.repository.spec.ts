@@ -25,6 +25,7 @@ describe('linkUserRepository', () => {
       const expected = [
         {
           id: userEmmaId,
+          userId: userJohnId,
           name: 'Emma',
           encount: 10,
           label: 'family',
@@ -34,6 +35,7 @@ describe('linkUserRepository', () => {
         },
         {
           id: userLilyId,
+          userId: userJohnId,
           name: 'Lily',
           encount: 10,
           label: 'family',
@@ -43,6 +45,7 @@ describe('linkUserRepository', () => {
         },
         {
           id: userSamId,
+          userId: userMikeId,
           name: 'Sam',
           encount: 1,
           label: 'friend',
