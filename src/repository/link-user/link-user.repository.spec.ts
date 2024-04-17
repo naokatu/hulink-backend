@@ -6,7 +6,7 @@ import {
   userLilyId,
   userSamId,
 } from '../../database/seeders/test/link-user'
-import { userJohnId, userMikeId } from '../../database/seeders/test/user'
+import { createUser, userJohnId, userMikeId } from '../../database/seeders/test/user'
 import { LinkUserRepository } from './link-user.repository'
 
 describe('linkUserRepository', () => {
@@ -56,6 +56,7 @@ describe('linkUserRepository', () => {
       ]
 
       // seed data
+      await createUser(prisma)
       await createLinkUser(prisma)
 
       // execute
