@@ -1,5 +1,10 @@
 import { PrismaClient } from '@prisma/client'
 
+import {
+  createLinkUser,
+  userEmmaId,
+  userLilyId,
+} from '../../database/seeders/test/link-user'
 import { createUser, userJohnId } from '../../database/seeders/test/user'
 import { User } from '../../model/user'
 import { UserRepository } from './user.repository'
@@ -23,12 +28,29 @@ describe('userRepository', () => {
         name: 'john',
         firebaseUid: firebaseUid,
         email: 'john@example.com',
-        createdUserId: userJohnId,
-        updatedUserId: userJohnId,
+        linkUsers: [
+          {
+            id: userEmmaId,
+            userId: userJohnId,
+            name: 'Emma',
+            encount: 10,
+            label: 'family',
+            sex: 'female',
+          },
+          {
+            id: userLilyId,
+            userId: userJohnId,
+            name: 'Lily',
+            encount: 10,
+            label: 'family',
+            sex: 'female',
+          },
+        ],
       }
 
       // seed data
       await createUser(prisma)
+      await createLinkUser(prisma)
 
       // execute
       const result = await repository.getUser(prisma, firebaseUid)

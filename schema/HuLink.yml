@@ -200,14 +200,17 @@ components:
         - registrationDate
     LinkUser:
       title: LinkUser
-      required:
-        - id
-        - name
-        - encount
       type: object
+      x-stoplight:
+        id: 3kdv3peim2lf9
       properties:
         id:
           type: string
+          format: uuid
+        userId:
+          type: string
+          x-stoplight:
+            id: geunjb9ddwoah
           format: uuid
         name:
           type: string
@@ -218,8 +221,11 @@ components:
           type: string
         sex:
           type: string
-      x-stoplight:
-        id: 3kdv3peim2lf9
+      required:
+        - id
+        - userId
+        - name
+        - encount
     CreateUserInput:
       title: CreateUserInput
       required:

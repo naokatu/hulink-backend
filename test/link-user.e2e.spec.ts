@@ -34,6 +34,7 @@ describe('GET /v1/link-user', () => {
         linkUsers: [
           {
             id: userEmmaId,
+            userId: userJohnId,
             name: 'Emma',
             encount: 10,
             label: 'family',
@@ -43,6 +44,7 @@ describe('GET /v1/link-user', () => {
           },
           {
             id: userLilyId,
+            userId: userJohnId,
             name: 'Lily',
             encount: 10,
             label: 'family',
@@ -52,6 +54,7 @@ describe('GET /v1/link-user', () => {
           },
           {
             id: userSamId,
+            userId: userMikeId,
             name: 'Sam',
             encount: 1,
             label: 'friend',

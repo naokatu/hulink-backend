@@ -6,7 +6,11 @@ import {
   userLilyId,
   userSamId,
 } from '../../database/seeders/test/link-user'
-import { userJohnId, userMikeId } from '../../database/seeders/test/user'
+import {
+  createUser,
+  userJohnId,
+  userMikeId,
+} from '../../database/seeders/test/user'
 import { LinkUserRepository } from './link-user.repository'
 
 describe('linkUserRepository', () => {
@@ -25,6 +29,7 @@ describe('linkUserRepository', () => {
       const expected = [
         {
           id: userEmmaId,
+          userId: userJohnId,
           name: 'Emma',
           encount: 10,
           label: 'family',
@@ -34,6 +39,7 @@ describe('linkUserRepository', () => {
         },
         {
           id: userLilyId,
+          userId: userJohnId,
           name: 'Lily',
           encount: 10,
           label: 'family',
@@ -43,6 +49,7 @@ describe('linkUserRepository', () => {
         },
         {
           id: userSamId,
+          userId: userMikeId,
           name: 'Sam',
           encount: 1,
           label: 'friend',
@@ -53,6 +60,7 @@ describe('linkUserRepository', () => {
       ]
 
       // seed data
+      await createUser(prisma)
       await createLinkUser(prisma)
 
       // execute

@@ -2,6 +2,7 @@ import * as db from '@prisma/client'
 import { resetAllWhenMocks, verifyAllWhenMocksCalled, when } from 'jest-when'
 
 import { userEmmaId } from '../../database/seeders/test/link-user'
+import { userJohnId } from '../../database/seeders/test/user'
 import { LinkUser } from '../../model/link-user'
 import { PrismaService } from '../../prisma.service'
 import { LinkUserRepository } from '../../repository/link-user/link-user.repository'
@@ -28,6 +29,7 @@ describe('LinkUserUsecase', () => {
       const linkUsers: LinkUser[] = [
         {
           id: userEmmaId,
+          userId: userJohnId,
           name: 'Emma',
           encount: 10,
           label: 'family',

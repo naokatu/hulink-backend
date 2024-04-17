@@ -23,6 +23,8 @@ export interface User {
 export interface LinkUser {
   /** @format uuid */
   id: string
+  /** @format uuid */
+  userId: string
   name: string
   /** @format int32 */
   encount: number

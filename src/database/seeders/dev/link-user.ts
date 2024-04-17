@@ -11,6 +11,7 @@ export async function createLinkUser(prisma: PrismaClient) {
   const createManyInput: db.Prisma.LinkUserCreateManyInput[] = [
     {
       id: userEmmaId,
+      userId: userJohnId,
       name: 'Emma',
       encount: 10,
       label: 'family',
@@ -20,6 +21,7 @@ export async function createLinkUser(prisma: PrismaClient) {
     },
     {
       id: userLilyId,
+      userId: userJohnId,
       name: 'Lily',
       encount: 10,
       label: 'family',
@@ -29,6 +31,7 @@ export async function createLinkUser(prisma: PrismaClient) {
     },
     {
       id: userSamId,
+      userId: userMikeId,
       name: 'Sam',
       encount: 1,
       label: 'friend',

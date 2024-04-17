@@ -16,6 +16,7 @@ export class LinkUserRepository {
     return linkUsers.map((linkUser) => {
       return {
         id: linkUser.id,
+        userId: linkUser.userId,
         name: linkUser.name,
         encount: linkUser.encount,
         label: linkUser.label,
