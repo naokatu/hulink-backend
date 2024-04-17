@@ -15,7 +15,7 @@ export class UserRepository {
   ): Promise<User | null> {
     return prisma.user.findUnique({
       include: {
-        linkUsers: true
+        linkUsers: true,
       },
       where: {
         firebaseUid: firebaseUid,

@@ -1,6 +1,10 @@
 import { PrismaClient } from '@prisma/client'
 
-import { createLinkUser, userEmmaId, userLilyId } from '../../database/seeders/test/link-user'
+import {
+  createLinkUser,
+  userEmmaId,
+  userLilyId,
+} from '../../database/seeders/test/link-user'
 import { createUser, userJohnId } from '../../database/seeders/test/user'
 import { User } from '../../model/user'
 import { UserRepository } from './user.repository'

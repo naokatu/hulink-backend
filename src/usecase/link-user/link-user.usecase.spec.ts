@@ -2,12 +2,12 @@ import * as db from '@prisma/client'
 import { resetAllWhenMocks, verifyAllWhenMocksCalled, when } from 'jest-when'
 
 import { userEmmaId } from '../../database/seeders/test/link-user'
+import { userJohnId } from '../../database/seeders/test/user'
 import { LinkUser } from '../../model/link-user'
 import { PrismaService } from '../../prisma.service'
 import { LinkUserRepository } from '../../repository/link-user/link-user.repository'
 import { GetLinkUsersOutput } from './link-user.interface.usecase'
 import { LinkUserUsecase } from './link-user.usecase'
-import { userJohnId } from '../../database/seeders/test/user'
 
 describe('LinkUserUsecase', () => {
   let prisma: PrismaService
