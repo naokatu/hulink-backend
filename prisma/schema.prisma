@@ -11,26 +11,31 @@ datasource db {
 }
 
 model User {
-  id        String   @id @db.Uuid
+  id          String @id @db.Uuid
   firebaseUid String @unique
-  email String @unique
-  name      String
+  email       String @unique
+  name        String
 
-  createdUserId String @db.Uuid
-  updatedUserId String @db.Uuid
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
+  linkUsers LinkUser[]
+
+  createdUserId String   @db.Uuid
+  updatedUserId String   @db.Uuid
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @default(now()) @updatedAt
 }
 
 model LinkUser {
-  id        String   @id @db.Uuid
-  name      String
-  encount   Int
-  label     String
-  sex       String
+  id      String @id @db.Uuid
+  name    String
+  encount Int
+  label   String
+  sex     String
 
-  createdUserId String @db.Uuid
-  updatedUserId String @db.Uuid
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
+  userId String @db.Uuid
+  user   User   @relation(fields: [userId], references: [id])
+
+  createdUserId String   @db.Uuid
+  updatedUserId String   @db.Uuid
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @default(now()) @updatedAt
 }
