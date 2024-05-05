@@ -22,4 +22,19 @@ export class UserRepository {
       },
     })
   }
+
+  async createUser(
+    prisma: db.Prisma.TransactionClient | PrismaService,
+    input: db.Prisma.UserCreateInput,
+  ): Promise<User> {
+    console.log(input.firebaseUid)
+    const user = await prisma.user.create({
+      data: input,
+    })
+
+    return {
+      ...user,
+      linkUsers: [],
+    }
+  }
 }
