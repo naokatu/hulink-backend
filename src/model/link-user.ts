@@ -2,7 +2,7 @@ export interface LinkUser {
   id: string
   userId: string
   name: string
-  encount: number
-  label?: string
-  sex?: string
+  weight?: number | null
+  label?: string | null
+  sex?: string | null
 }

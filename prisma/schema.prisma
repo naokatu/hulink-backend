@@ -27,9 +27,9 @@ model User {
 model LinkUser {
   id      String @id @db.Uuid
   name    String
-  encount Int
-  label   String
-  sex     String
+  weight  Int?
+  label   String?
+  sex     String?
 
   userId String @db.Uuid
   user   User   @relation(fields: [userId], references: [id])

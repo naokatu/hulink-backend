@@ -20,7 +20,7 @@ describe('userRepository', () => {
     repository = new UserRepository()
   })
 
-  describe('UserRepository', () => {
+  describe('getUser', () => {
     it('正常系: getUser', async () => {
       const firebaseUid = 'firebaseUid_john'
       const expected: Partial<User> = {
@@ -33,7 +33,7 @@ describe('userRepository', () => {
             id: userEmmaId,
             userId: userJohnId,
             name: 'Emma',
-            encount: 10,
+            weight: 10,
             label: 'family',
             sex: 'female',
           },
@@ -41,7 +41,7 @@ describe('userRepository', () => {
             id: userLilyId,
             userId: userJohnId,
             name: 'Lily',
-            encount: 10,
+            weight: 10,
             label: 'family',
             sex: 'female',
           },
@@ -54,6 +54,36 @@ describe('userRepository', () => {
 
       // execute
       const result = await repository.getUser(prisma, firebaseUid)
+
+      // assert
+      expect(result).toMatchObject(expected)
+    })
+  })
+
+  describe('createUser', () => {
+    it('正常系', async () => {
+      const exampleFirebaseUid = 'example_id'
+      const expected: Partial<User> = {
+        id: '68ee1e99-12bc-d327-853c-e29abb2f7f24',
+        name: 'name',
+        firebaseUid: exampleFirebaseUid,
+        email: 'name@example.com',
+        linkUsers: [],
+      }
+
+      // seed data
+      await createUser(prisma)
+      await createLinkUser(prisma)
+
+      // execute
+      const result = await repository.createUser(prisma, {
+        id: '68ee1e99-12bc-d327-853c-e29abb2f7f24',
+        name: 'name',
+        firebaseUid: exampleFirebaseUid,
+        email: 'name@example.com',
+        createdUserId: '68ee1e99-12bc-d327-853c-e29abb2f7f24',
+        updatedUserId: '68ee1e99-12bc-d327-853c-e29abb2f7f24',
+      })
 
       // assert
       expect(result).toMatchObject(expected)

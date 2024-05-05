@@ -6,13 +6,8 @@ import {
   createLinkUser,
   userEmmaId,
   userLilyId,
-  userSamId,
 } from '../src/database/seeders/test/link-user'
-import {
-  createUser,
-  userJohnId,
-  userMikeId,
-} from '../src/database/seeders/test/user'
+import { createUser, userJohnId } from '../src/database/seeders/test/user'
 import { createTestingApplication } from './test-application'
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -27,59 +22,31 @@ beforeEach(async () => {
   await createUser(prisma)
 })
 
-describe('GET /v1/link-user', () => {
+describe('GET /v1/user', () => {
   it('正常系', async () => {
     const expected = {
       data: {
-        linkUsers: [
-          {
-            id: userEmmaId,
-            userId: userJohnId,
-            name: 'Emma',
-            weight: 10,
-            label: 'family',
-            sex: 'female',
-          },
-          {
-            id: userLilyId,
-            userId: userJohnId,
-            name: 'Lily',
-            weight: 10,
-            label: 'family',
-            sex: 'female',
-          },
-          {
-            id: userSamId,
-            userId: userMikeId,
-            name: 'Sam',
-            weight: 1,
-            label: 'friend',
-            sex: 'male',
-          },
-        ],
-      },
-    }
-
-    // seed
-    await createLinkUser(prisma)
-
-    // execute & assert
-    return request(app.getHttpServer())
-      .get('/v1/link-user')
-      .set('authorization', 'Bearer')
-      .expect(HttpStatus.OK)
-      .expect(expected)
-  })
-})
-
-describe('POST /v1/link-user', () => {
-  it('正常系', async () => {
-    const expected = {
-      data: {
-        linkUser: {
-          id: expect.anything(),
-          userId: userJohnId,
-          name: 'hally',
+        user: {
+          id: userJohnId,
+          name: 'john',
+          linkUsers: [
+            {
+              id: userEmmaId,
+              userId: userJohnId,
+              name: 'Emma',
+              weight: 10,
+              label: 'family',
+              sex: 'female',
+            },
+            {
+              id: userLilyId,
+              userId: userJohnId,
+              name: 'Lily',
+              weight: 10,
+              label: 'family',
+              sex: 'female',
+            },
+          ],
         },
       },
     }
@@ -89,13 +56,37 @@ describe('POST /v1/link-user', () => {
 
     // execute & assert
     return request(app.getHttpServer())
-      .post('/v1/link-user')
+      .get('/v1/user')
+      .set('authorization', 'Bearer')
+      .expect(HttpStatus.OK)
+      .expect(expected)
+  })
+})
+
+describe('POST /v1/user', () => {
+  it('正常系', async () => {
+    const expected = {
+      data: {
+        user: {
+          id: expect.anything(),
+          name: 'Sally',
+          linkUsers: [],
+        },
+      },
+    }
+
+    // seed
+    await createLinkUser(prisma)
+
+    // execute & assert
+    return request(app.getHttpServer())
+      .post('/v1/user')
       .send({
-        name: 'hally',
-        interact: ['LINE', 'SNS'],
-        userId: userJohnId,
+        name: 'Sally',
       })
       .set('authorization', 'Bearer')
+      .set('x-firebase-uid', 'firebaseUid_Sally')
+      .set('x-email', 'sally@example.com')
       .expect(HttpStatus.CREATED)
       .then((res) => {
         expect(res.body).toEqual(expected)

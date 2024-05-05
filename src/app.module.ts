@@ -4,6 +4,7 @@ import * as OpenApiValidator from 'express-openapi-validator'
 import { join } from 'path'
 
 import { LinkUserModule } from './api/link-user/link-user.module'
+import { UserModule } from './api/user/user.module'
 import configuration from './config/configuration'
 import { LoggingModule } from './logging/logging.module'
 import { LoggingService } from './logging/logging.service'
@@ -18,6 +19,7 @@ import { LoggingMiddleware } from './middleware/logging.middleware'
     }),
     LoggingModule,
     LinkUserModule,
+    UserModule,
   ],
   providers: [LoggingService],
 })
