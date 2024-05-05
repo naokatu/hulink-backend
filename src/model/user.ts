@@ -8,6 +8,4 @@ export interface User {
   name: string
   createdUserId: string
   updatedUserId: string
-  createdAt: Date
-  updatedAt: Date
 }
