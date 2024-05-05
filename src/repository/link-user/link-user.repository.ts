@@ -18,12 +18,27 @@ export class LinkUserRepository {
         id: linkUser.id,
         userId: linkUser.userId,
         name: linkUser.name,
-        encount: linkUser.encount,
+        weight: linkUser.weight,
         label: linkUser.label,
         sex: linkUser.sex,
         createdUserId: linkUser.createdUserId,
         updatedUserId: linkUser.updatedUserId,
       }
     })
+  }
+
+  async createLinkUser(
+    prisma: db.Prisma.TransactionClient | PrismaService,
+    input: db.Prisma.LinkUserCreateInput,
+  ): Promise<LinkUser> {
+    const linkUser = await prisma.linkUser.create({ data: input })
+    return {
+      id: linkUser.id,
+      userId: linkUser.userId,
+      name: linkUser.name,
+      weight: linkUser.weight ?? undefined,
+      label: linkUser.label ?? undefined,
+      sex: linkUser.sex ?? undefined,
+    }
   }
 }
