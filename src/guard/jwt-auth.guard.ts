@@ -16,9 +16,10 @@ export class JwtAuthGuard implements CanActivate {
     // 開発用認証スキップ
     if (doAuth === 'false') {
       const firebaseUid = request.headers['x-firebase-uid']
+      const email = request.headers['x-email']
       request.claim = {
         uid: firebaseUid || 'firebaseUid_john',
-        email: 'john@example.com',
+        email: email || 'john@example.com',
       }
 
       return true
