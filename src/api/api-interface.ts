@@ -14,9 +14,7 @@ export interface User {
   /** @format uuid */
   id: string
   name: string
-  linkUser?: LinkUser[]
-  /** @format date-time */
-  registrationDate: string
+  linkUsers?: LinkUser[]
 }
 
 /** LinkUser */
@@ -27,7 +25,7 @@ export interface LinkUser {
   userId: string
   name: string
   /** @format int32 */
-  encount: number
+  weight?: number
   label?: string
   sex?: string
 }
@@ -40,9 +38,21 @@ export interface CreateUserInput {
 /** CreateLinkUserInput */
 export interface CreateLinkUserInput {
   name: string
-  encount: string
+  interact: string[]
   label?: string
   sex?: string
+  /** @format uuid */
+  userId: string
+}
+
+/** UpdateLinkUserInput */
+export interface UpdateLinkUserInput {
+  name: string
+  interact: string[]
+  label?: string
+  sex?: string
+  /** @format uuid */
+  userId: string
 }
 
 /** 400ValidationError */
@@ -88,6 +98,15 @@ export interface CreateUserError {
 export interface CreateLinkUserError {
   code: string
   message: string
+}
+
+export interface CreateLinkUserInputCopy {
+  name: string
+  /** @format uuid */
+  userId: string
+  interact: string[]
+  label?: string
+  sex?: string
 }
 
 export namespace User {
@@ -171,9 +190,25 @@ export namespace LinkUser {
     }
     export type ResponseBody = {
       data?: {
-        linkUsers: LinkUser[]
+        linkUser: LinkUser
       }
       errors?: CreateLinkUserError[]
     }
+  }
+  /**
+   * No description
+   * @name PutLinkUser
+   * @summary リンクユーザを更新する
+   * @request PUT:/link-user
+   */
+  export namespace PutLinkUser {
+    export type RequestParams = {}
+    export type RequestQuery = {}
+    export type RequestBody = never
+    export type RequestHeaders = {
+      /** Bearer xxx */
+      authorization?: string
+    }
+    export type ResponseBody = void
   }
 }
