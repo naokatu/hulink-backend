@@ -36,31 +36,25 @@ describe('GET /v1/link-user', () => {
             id: userEmmaId,
             userId: userJohnId,
             name: 'Emma',
-            encount: 10,
+            weight: 10,
             label: 'family',
             sex: 'female',
-            createdUserId: userJohnId,
-            updatedUserId: userJohnId,
           },
           {
             id: userLilyId,
             userId: userJohnId,
             name: 'Lily',
-            encount: 10,
+            weight: 10,
             label: 'family',
             sex: 'female',
-            createdUserId: userJohnId,
-            updatedUserId: userJohnId,
           },
           {
             id: userSamId,
             userId: userMikeId,
             name: 'Sam',
-            encount: 1,
+            weight: 1,
             label: 'friend',
             sex: 'male',
-            createdUserId: userMikeId,
-            updatedUserId: userMikeId,
           },
         ],
       },
@@ -75,5 +69,36 @@ describe('GET /v1/link-user', () => {
       .set('authorization', 'Bearer')
       .expect(HttpStatus.OK)
       .expect(expected)
+  })
+})
+
+describe('POST /v1/link-user', () => {
+  it('正常系', async () => {
+    const expected = {
+      data: {
+        linkUser: {
+          id: expect.anything(),
+          userId: userJohnId,
+          name: 'hally',
+        },
+      },
+    }
+
+    // seed
+    await createLinkUser(prisma)
+
+    // execute & assert
+    return request(app.getHttpServer())
+      .post('/v1/link-user')
+      .send({
+        name: 'hally',
+        interact: ['LINE', 'SNS'],
+        userId: userJohnId,
+      })
+      .set('authorization', 'Bearer')
+      .expect(HttpStatus.CREATED)
+      .then((res) => {
+        expect(res.body).toEqual(expected)
+      })
   })
 })
