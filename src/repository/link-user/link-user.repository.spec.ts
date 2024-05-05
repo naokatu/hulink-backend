@@ -31,7 +31,7 @@ describe('linkUserRepository', () => {
           id: userEmmaId,
           userId: userJohnId,
           name: 'Emma',
-          encount: 10,
+          weight: 10,
           label: 'family',
           sex: 'female',
           createdUserId: userJohnId,
@@ -41,7 +41,7 @@ describe('linkUserRepository', () => {
           id: userLilyId,
           userId: userJohnId,
           name: 'Lily',
-          encount: 10,
+          weight: 10,
           label: 'family',
           sex: 'female',
           createdUserId: userJohnId,
@@ -51,7 +51,7 @@ describe('linkUserRepository', () => {
           id: userSamId,
           userId: userMikeId,
           name: 'Sam',
-          encount: 1,
+          weight: 1,
           label: 'friend',
           sex: 'male',
           createdUserId: userMikeId,
@@ -65,6 +65,35 @@ describe('linkUserRepository', () => {
 
       // execute
       const result = await repository.getLinkUsers(prisma)
+
+      // assert
+      expect(result).toMatchObject(expected)
+    })
+  })
+
+  describe('createLinkUser', () => {
+    it('正常系', async () => {
+      const expected = {
+        id: expect.anything(),
+        userId: userJohnId,
+        name: 'hally',
+      }
+
+      // seed data
+      await createUser(prisma)
+      await createLinkUser(prisma)
+
+      const result = await repository.createLinkUser(prisma, {
+        id: 'bf625a16-8e59-4288-7925-cfc86e68c5bf',
+        user: {
+          connect: {
+            id: userJohnId,
+          },
+        },
+        name: 'hally',
+        createdUserId: userJohnId,
+        updatedUserId: userJohnId,
+      })
 
       // assert
       expect(result).toMatchObject(expected)
