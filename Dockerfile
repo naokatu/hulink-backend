@@ -22,7 +22,8 @@ WORKDIR /app
 
 COPY --from=builder /app/node_modules /app/node_modules
 COPY --from=builder /app/dist /app/dist
-COPY --from=builder /app/service-account.json ./
+COPY prisma /app/prisma
+COPY docker/app/bootstrap.sh /app/bootstrap.sh
 
 EXPOSE 80
-CMD ["node", "dist/main"]
+CMD ["/app/bootstrap.sh"]
