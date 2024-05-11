@@ -28,6 +28,7 @@ services:
       - '13000:3000'
     environment:
       APP_ENV: local
+      APP_PORT: 3000
       DATABASE_URL: 'postgresql://postgres:admin@postgres:5432/hulink-app?schema=public'
       AUTH_ENABLED: false
       LOG_LEVEL: debug
@@ -40,6 +41,7 @@ services:
       - test
     environment:
       APP_ENV: test
+      APP_PORT: 3000
       DATABASE_URL: 'postgresql://postgres:admin@postgres:5432/hulink-test?schema=public'
       AUTH_ENABLED: false
       LOG_LEVEL: debug
