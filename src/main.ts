@@ -1,16 +1,16 @@
 import { VersioningType } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
 import { NestFactory } from '@nestjs/core'
 import admin from 'firebase-admin'
 
 import { AppModule } from './app.module'
-import { ConfigService } from '@nestjs/config'
 import { Config } from './config/configuration'
 import { HttpExceptionFilter } from './filters/http-exception.filter'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
 
-  const configService = app.get(ConfigService<Config>);
+  const configService = app.get(ConfigService<Config>)
 
   app.enableVersioning({
     type: VersioningType.URI,
