@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 import * as db from '@prisma/client'
 
-import { userJohnId, userMikeId } from '../test/user'
+import { userJohnId, userMikeId } from './user'
 
 export const userEmmaId = 'e4e5df5f-03ec-830e-4f14-ae5c82b6aa79'
 export const userLilyId = 'AA2D6AC8-3CC6-48CB-B559-038A86C97F94'
