@@ -1,3 +1,3 @@
 #! /bin/sh
-yarn prisma migrate deploy
+yarn migrate
 node dist/main.js
