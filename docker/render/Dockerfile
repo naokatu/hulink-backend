@@ -23,7 +23,7 @@ WORKDIR /app
 COPY --from=builder /app/node_modules /app/node_modules
 COPY --from=builder /app/dist /app/dist
 COPY ../../prisma /app/prisma
-COPY bootstrap.sh /app/bootstrap.sh
+COPY ./bootstrap.sh /app/bootstrap.sh
 
 EXPOSE 80
 CMD ["/app/bootstrap.sh"]
