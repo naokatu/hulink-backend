@@ -1,4 +1,3 @@
 #! /bin/sh
-echo $GOOGLE_APPPLICATION_CREDENTIALS > /app/service-account.json
-yarn prisma migrate deploy
+yarn migrate
 node dist/main.js
