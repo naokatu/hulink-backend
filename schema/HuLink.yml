@@ -1,6 +1,4 @@
 openapi: 3.0.0
-x-stoplight:
-  id: 0ns1vkd6jvqg1
 info:
   title: HuLink
   description: ''
@@ -40,16 +38,12 @@ paths:
                 properties:
                   data:
                     type: object
-                    x-stoplight:
-                      id: yrmznrt64knab
                     required:
                       - user
                     properties:
                       user:
                         $ref: '#/components/schemas/User'
                   errors:
-                    x-stoplight:
-                      id: e13jhr3k9iz2j
                     type: array
                     items:
                       $ref: '#/components/schemas/CreateUserError'
@@ -76,8 +70,6 @@ paths:
                 properties:
                   data:
                     type: object
-                    x-stoplight:
-                      id: rb521dch0iux4
                     required:
                       - user
                     properties:
@@ -113,21 +105,16 @@ paths:
                 properties:
                   data:
                     type: object
-                    x-stoplight:
-                      id: jcczh9v6l1dzd
                     required:
                       - linkUsers
                     properties:
                       linkUsers:
-                        x-stoplight:
-                          id: 6vzcgb1hpjtyr
                         type: array
                         items:
                           $ref: '#/components/schemas/LinkUser'
                 required:
                   - data
       deprecated: false
-      x-extension-1: null
     post:
       summary: リンクユーザを作成する
       description: ''
@@ -157,16 +144,12 @@ paths:
                 properties:
                   data:
                     type: object
-                    x-stoplight:
-                      id: q3xqezeh3f203
                     properties:
                       linkUser:
                         $ref: '#/components/schemas/LinkUser'
                     required:
                       - linkUser
                   errors:
-                    x-stoplight:
-                      id: nk03cm9grnxow
                     type: array
                     items:
                       $ref: '#/components/schemas/CreateLinkUserError'
@@ -183,13 +166,28 @@ paths:
           in: header
           name: authorization
           description: Bearer xxx
+  /health:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                required:
+                  - status
+      operationId: get-health
 components:
   schemas:
     User:
       title: User
       type: object
-      x-stoplight:
-        id: pv7wg7wquc8el
       properties:
         id:
           type: string
@@ -206,24 +204,18 @@ components:
     LinkUser:
       title: LinkUser
       type: object
-      x-stoplight:
-        id: 3kdv3peim2lf9
       properties:
         id:
           type: string
           format: uuid
         userId:
           type: string
-          x-stoplight:
-            id: geunjb9ddwoah
           format: uuid
         name:
           type: string
         weight:
           type: integer
           format: int32
-          x-stoplight:
-            id: r2jjrt5gwgp9h
         label:
           type: string
         sex:
@@ -235,8 +227,6 @@ components:
     CreateUserInput:
       title: CreateUserInput
       type: object
-      x-stoplight:
-        id: idvktxyqs05y9
       properties:
         name:
           type: string
@@ -245,18 +235,12 @@ components:
     CreateLinkUserInput:
       title: CreateLinkUserInput
       type: object
-      x-stoplight:
-        id: k38xy3it755ye
       properties:
         name:
           type: string
         interact:
           type: array
-          x-stoplight:
-            id: qhj89jbjggtjl
           items:
-            x-stoplight:
-              id: im7qkk639idl9
             type: string
         label:
           type: string
@@ -264,8 +248,6 @@ components:
           type: string
         userId:
           type: string
-          x-stoplight:
-            id: l7qdj4hzl3y13
           format: uuid
       required:
         - name
@@ -273,19 +255,13 @@ components:
         - userId
     UpdateLinkUserInput:
       title: UpdateLinkUserInput
-      x-stoplight:
-        id: mw590h42par5x
       type: object
       properties:
         name:
           type: string
         interact:
           type: array
-          x-stoplight:
-            id: qhj89jbjggtjl
           items:
-            x-stoplight:
-              id: im7qkk639idl9
             type: string
         label:
           type: string
@@ -293,8 +269,6 @@ components:
           type: string
         userId:
           type: string
-          x-stoplight:
-            id: l7qdj4hzl3y13
           format: uuid
       required:
         - name
@@ -303,8 +277,6 @@ components:
     400ValidationError:
       title: 400ValidationError
       type: object
-      x-stoplight:
-        id: gizmx7j89lxtd
       properties:
         code:
           type: string
@@ -315,16 +287,10 @@ components:
             properties:
               path:
                 type: string
-                x-stoplight:
-                  id: yi0r2vc6ky28l
               message:
                 type: string
-                x-stoplight:
-                  id: rfni8yy9x50rb
               errorcode:
                 type: string
-                x-stoplight:
-                  id: u6n2diozc8rgh
             required:
               - path
               - message
@@ -342,8 +308,6 @@ components:
           type: string
         message:
           type: string
-      x-stoplight:
-        id: hsk0qxenulgz3
     500Error:
       title: 500Error
       required:
@@ -355,8 +319,6 @@ components:
           type: string
         message:
           type: string
-      x-stoplight:
-        id: ju40itmk81o3x
     503Error:
       title: 503Error
       required:
@@ -368,13 +330,9 @@ components:
           type: string
         message:
           type: string
-      x-stoplight:
-        id: 778fsrfqpvpmk
     Pagenation:
       title: Pagenation
       type: object
-      x-stoplight:
-        id: pizjxc9vamh4u
       properties:
         total:
           type: integer
@@ -389,12 +347,8 @@ components:
           type: string
         message:
           type: string
-      x-stoplight:
-        id: f047kbzfvqn3a
     CreateLinkUserError:
       title: CreateLinkUserError
-      x-stoplight:
-        id: 937df2fe2c992
       required:
         - code
         - message
@@ -409,29 +363,17 @@ components:
       properties:
         name:
           type: string
-          x-stoplight:
-            id: oct9glod257cs
         userId:
           type: string
-          x-stoplight:
-            id: vbq7c48fulc9u
           format: uuid
         interact:
           type: array
-          x-stoplight:
-            id: iavndwo0e8xj9
           items:
-            x-stoplight:
-              id: f5zugshw3upcg
             type: string
         label:
           type: string
-          x-stoplight:
-            id: 2lo4ab5jtrzkj
         sex:
           type: string
-          x-stoplight:
-            id: 896e8w4n51n8g
       required:
         - name
         - userId
