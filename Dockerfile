@@ -25,5 +25,7 @@ COPY --from=builder /app/dist /app/dist
 COPY prisma /app/prisma
 COPY docker/app/bootstrap.sh /app/bootstrap.sh
 
+RUN chmod +x /app/bootstrap.sh
+
 EXPOSE 80
-CMD ["/app/bootstrap.sh"]
+CMD ["/bin/sh", "/app/bootstrap.sh"]
