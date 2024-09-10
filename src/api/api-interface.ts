@@ -212,3 +212,21 @@ export namespace LinkUser {
     export type ResponseBody = void
   }
 }
+
+export namespace Health {
+  /**
+   * No description
+   * @name GetHealth
+   * @summary Your GET endpoint
+   * @request GET:/health
+   */
+  export namespace GetHealth {
+    export type RequestParams = {}
+    export type RequestQuery = {}
+    export type RequestBody = never
+    export type RequestHeaders = {}
+    export type ResponseBody = {
+      status: string
+    }
+  }
+}

@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config'
 import * as OpenApiValidator from 'express-openapi-validator'
 import { join } from 'path'
 
+import { HealthModule } from './api/health/health.module'
 import { LinkUserModule } from './api/link-user/link-user.module'
 import { UserModule } from './api/user/user.module'
 import configuration from './config/configuration'
@@ -20,6 +21,7 @@ import { LoggingMiddleware } from './middleware/logging.middleware'
     LoggingModule,
     LinkUserModule,
     UserModule,
+    HealthModule,
   ],
   providers: [LoggingService],
 })
