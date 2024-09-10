@@ -12,7 +12,3 @@
 
 ## ローカルサーバーを起動
 ```$ yarn run start:dev```
-
-## Docker 環境で開発する場合
-### Docker Compose で full プロファイルを使用する
-```$ export COMPOSE_PROFILES=full```
